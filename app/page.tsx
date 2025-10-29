@@ -8,8 +8,6 @@ import {
   FaWhatsapp,
   FaShoppingCart,
   FaSearch,
-  FaBars,
-  FaTimes,
 } from "react-icons/fa";
 import Cart from "./components/Cart";
 
@@ -17,7 +15,6 @@ export default function Home() {
   const [cart, setCart] = useState<any[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [menuOpen, setMenuOpen] = useState(false); // 👈 añadido
 
   useEffect(() => {
     document.title = "MoonCosmetics | Maquillaje y Skincare Premium";
@@ -116,91 +113,6 @@ export default function Home() {
         )}
       </button>
 
-      {/* 🔥 BOTÓN DEL MENÚ HAMBURGUESA (solo móvil) */}
-      <button
-        onClick={() => setMenuOpen(true)}
-        className="fixed top-4 left-4 bg-[#D4BFAA] text-white p-3 rounded-full shadow-md hover:bg-[#C5A78E] transition-all z-50 sm:hidden"
-      >
-        <FaBars className="text-lg" />
-      </button>
-
-      {/* 🔥 OVERLAY Y PANEL DEL MENÚ */}
-      {menuOpen && (
-        <>
-          {/* Overlay */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.5 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black z-[60] backdrop-blur-sm"
-            onClick={() => setMenuOpen(false)}
-          ></motion.div>
-
-          {/* Panel */}
-          <motion.div
-            initial={{ x: -200, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: -200, opacity: 0 }}
-            transition={{ type: "spring", stiffness: 80 }}
-            className="fixed top-0 left-0 w-64 h-full bg-[#FFF9F5]/95 backdrop-blur-md shadow-2xl z-[70] p-6 flex flex-col"
-          >
-            <div className="flex justify-between items-center mb-8">
-              <h2 className="text-lg font-semibold text-[#C5A78E]">
-                MoonCosmetics
-              </h2>
-              <button onClick={() => setMenuOpen(false)}>
-                <FaTimes className="text-gray-600 text-xl" />
-              </button>
-            </div>
-
-            <nav className="flex flex-col gap-4">
-              <a
-                href="#skincare"
-                onClick={() => setMenuOpen(false)}
-                className="text-[#2F2F2F] hover:text-[#C5A78E] text-base font-medium"
-              >
-                Skincare ✨
-              </a>
-              <a
-                href="#maquillaje"
-                onClick={() => setMenuOpen(false)}
-                className="text-[#2F2F2F] hover:text-[#C5A78E] text-base font-medium"
-              >
-                Maquillaje 💄
-              </a>
-            </nav>
-
-            <div className="mt-auto pt-6 border-t border-[#E6D9C8]">
-              <p className="text-xs text-[#7D7266] mb-3">Síguenos:</p>
-              <div className="flex gap-3">
-                <a
-                  href="https://www.instagram.com/camiluna1612"
-                  target="_blank"
-                  className="text-[#C5A78E] hover:text-[#A18C75] text-lg"
-                >
-                  <FaInstagram />
-                </a>
-                <a
-                  href="https://www.tiktok.com/@camiluna23"
-                  target="_blank"
-                  className="text-[#C5A78E] hover:text-[#A18C75] text-lg"
-                >
-                  <FaTiktok />
-                </a>
-                <a
-                  href="https://wa.me/51992200823"
-                  target="_blank"
-                  className="text-[#C5A78E] hover:text-[#A18C75] text-lg"
-                >
-                  <FaWhatsapp />
-                </a>
-              </div>
-            </div>
-          </motion.div>
-        </>
-      )}
-
-      {/* 🩵 TODO TU CÓDIGO ORIGINAL SIGUE IGUAL ABAJO */}
       {/* LOGO */}
       <motion.header
         initial={{ opacity: 0, y: -15 }}
@@ -236,9 +148,121 @@ export default function Home() {
         <FaSearch className="absolute top-3 right-5 text-[#C5A78E] text-xl" />
       </div>
 
-      {/* RESTO DE TU CÓDIGO ORIGINAL — SIN CAMBIOS */}
-      {/* ... */}
-      
+      {/* BOTONES */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2 }}
+        className="text-center mt-8 flex flex-wrap justify-center gap-3 sm:gap-4"
+      >
+        <a
+          href="#skincare"
+          className="bg-gradient-to-r from-[#EDE0D4] to-[#D4BFAA] text-[#2F2F2F] px-6 py-2 sm:px-8 sm:py-3 rounded-full text-sm sm:text-lg font-semibold shadow-md hover:shadow-lg transition-all"
+        >
+          Skincare
+        </a>
+        <a
+          href="#maquillaje"
+          className="bg-gradient-to-r from-[#EDE0D4] to-[#D4BFAA] text-[#2F2F2F] px-6 py-2 sm:px-8 sm:py-3 rounded-full text-sm sm:text-lg font-semibold shadow-md hover:shadow-lg transition-all"
+        >
+          Maquillaje
+        </a>
+      </motion.div>
+
+      {/* SECCIONES */}
+      {["skincare", "maquillaje"].map((cat) => (
+        <section
+          key={cat}
+          id={cat}
+          className="mt-16 sm:mt-20 max-w-6xl px-2 sm:px-6 w-full"
+        >
+          <h3 className="text-xl sm:text-2xl font-semibold text-center mb-8 sm:mb-10 text-[#C5A78E] capitalize">
+            {cat} {cat === "skincare" ? "✨" : "💄"}
+          </h3>
+          <div className="flex gap-4 sm:gap-6 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory scroll-smooth">
+            {filteredProducts
+              .filter((p) => p.categoria === cat)
+              .map((producto) => (
+                <motion.div
+                  key={producto.id}
+                  whileHover={{ scale: 1.05 }}
+                  className="snap-center min-w-[200px] sm:min-w-[250px] bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all"
+                >
+                  <img
+                    src={producto.img}
+                    alt={producto.nombre}
+                    className="w-full h-48 sm:h-56 object-cover"
+                  />
+                  <div className="p-4 text-center">
+                    <h4 className="font-medium text-[#2F2F2F] text-sm sm:text-base">
+                      {producto.nombre}
+                    </h4>
+                    <p className="text-[#7D7266] mt-1 text-sm sm:text-base">
+                      S/{producto.precio}
+                    </p>
+                    <button
+                      onClick={() => addToCart(producto)}
+                      className="mt-3 bg-gradient-to-r from-[#D4BFAA] to-[#C5A78E] text-white px-5 py-2 rounded-full shadow hover:scale-105 transition text-sm sm:text-base"
+                    >
+                      Agregar al carrito
+                    </button>
+                  </div>
+                </motion.div>
+              ))}
+          </div>
+          <div className="text-center mt-6">
+            <button className="text-[#C5A78E] font-medium underline hover:text-[#A18C75] transition text-sm sm:text-base">
+              Ver más productos →
+            </button>
+          </div>
+        </section>
+      ))}
+
+      {/* REDES SOCIALES */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className="mt-12 sm:mt-16 flex flex-wrap justify-center gap-4 sm:gap-6"
+      >
+        {[
+          {
+            href: "https://www.instagram.com/camiluna1612",
+            icon: <FaInstagram className="text-xl sm:text-2xl" />,
+            label: "Instagram",
+          },
+          {
+            href: "https://www.tiktok.com/@camiluna23",
+            icon: <FaTiktok className="text-xl sm:text-2xl" />,
+            label: "TikTok",
+          },
+          {
+            href: "https://wa.me/51992200823",
+            icon: <FaWhatsapp className="text-xl sm:text-2xl" />,
+            label: "WhatsApp",
+          },
+        ].map(({ href, icon, label }) => (
+          <a
+            key={label}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 bg-gradient-to-r from-[#EDE0D4] to-[#D4BFAA] text-[#2F2F2F] px-5 py-2 sm:px-6 sm:py-3 rounded-full text-sm sm:text-lg font-semibold shadow-md hover:scale-105 transition-all"
+          >
+            {icon}
+            {label}
+          </a>
+        ))}
+      </motion.div>
+
+      {/* FOOTER */}
+      <footer className="mt-14 sm:mt-20 w-full bg-[#F5EDE3] py-6 sm:py-8 text-center text-[#7D7266] text-xs sm:text-sm">
+        <p>
+          © {new Date().getFullYear()} MoonCosmetics · Todos los derechos
+          reservados.
+        </p>
+      </footer>
+
       {cartOpen && (
         <Cart
           cart={cart}
@@ -248,5 +272,6 @@ export default function Home() {
       )}
     </main>
   );
-  
-  
+}
+
+
