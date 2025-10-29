@@ -8,6 +8,8 @@ import {
   FaWhatsapp,
   FaShoppingCart,
   FaSearch,
+  FaBars,
+  FaTimes,
 } from "react-icons/fa";
 import Cart from "./components/Cart";
 
@@ -15,6 +17,7 @@ export default function Home() {
   const [cart, setCart] = useState<any[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false); // Menú hamburguesa móvil
 
   useEffect(() => {
     document.title = "MoonCosmetics | Maquillaje y Skincare Premium";
@@ -112,6 +115,60 @@ export default function Home() {
           </span>
         )}
       </button>
+
+      {/* MENÚ HAMBURGUESA */}
+      <button
+        onClick={() => setMenuOpen(!menuOpen)}
+        className="fixed top-4 left-4 sm:hidden bg-[#D4BFAA] text-white p-3 rounded-full shadow-md hover:bg-[#C5A78E] transition-all z-50"
+      >
+        {menuOpen ? <FaTimes /> : <FaBars />}
+      </button>
+
+      {/* MENÚ LATERAL MÓVIL */}
+      {menuOpen && (
+        <motion.div
+          initial={{ x: -200 }}
+          animate={{ x: 0 }}
+          exit={{ x: -200 }}
+          className="fixed top-0 left-0 h-full w-3/4 bg-white shadow-2xl z-40 p-6 flex flex-col items-start gap-6 text-[#2F2F2F]"
+        >
+          <a
+            href="#skincare"
+            onClick={() => setMenuOpen(false)}
+            className="text-lg font-semibold text-[#C5A78E]"
+          >
+            Skincare
+          </a>
+          <a
+            href="#maquillaje"
+            onClick={() => setMenuOpen(false)}
+            className="text-lg font-semibold text-[#C5A78E]"
+          >
+            Maquillaje
+          </a>
+          <a
+            href="https://www.instagram.com/camiluna1612"
+            target="_blank"
+            className="text-lg font-medium hover:text-[#A18C75]"
+          >
+            Instagram
+          </a>
+          <a
+            href="https://www.tiktok.com/@camiluna23"
+            target="_blank"
+            className="text-lg font-medium hover:text-[#A18C75]"
+          >
+            TikTok
+          </a>
+          <a
+            href="https://wa.me/51992200823"
+            target="_blank"
+            className="text-lg font-medium hover:text-[#A18C75]"
+          >
+            WhatsApp
+          </a>
+        </motion.div>
+      )}
 
       {/* LOGO */}
       <motion.header
@@ -264,14 +321,11 @@ export default function Home() {
       </footer>
 
       {cartOpen && (
-        <Cart
-          cart={cart}
-          setCart={setCart}
-          onClose={() => setCartOpen(false)}
-        />
+        <Cart cart={cart} setCart={setCart} onClose={() => setCartOpen(false)} />
       )}
     </main>
   );
 }
+
 
 
