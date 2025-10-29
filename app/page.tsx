@@ -99,13 +99,13 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#FFFDFB] to-[#F7EFEA] text-[#2F2F2F] font-[Poppins] flex flex-col items-center relative overflow-hidden">
+    <main className="min-h-screen bg-gradient-to-b from-[#FFFDFB] to-[#F7EFEA] text-[#2F2F2F] font-[Poppins] flex flex-col items-center relative overflow-hidden px-4 sm:px-0">
       {/* BOTÓN DEL CARRITO */}
       <button
         onClick={() => setCartOpen(true)}
-        className="fixed top-8 right-8 bg-[#D4BFAA] text-white p-3 rounded-full shadow-md hover:bg-[#C5A78E] transition-all"
+        className="fixed top-4 right-4 sm:top-8 sm:right-8 bg-[#D4BFAA] text-white p-3 rounded-full shadow-md hover:bg-[#C5A78E] transition-all z-50"
       >
-        <FaShoppingCart className="text-xl" />
+        <FaShoppingCart className="text-lg sm:text-xl" />
         {cart.length > 0 && (
           <span className="absolute -top-1 -right-1 bg-white text-[#C5A78E] text-xs px-2 py-[1px] rounded-full">
             {cart.length}
@@ -118,7 +118,7 @@ export default function Home() {
         initial={{ opacity: 0, y: -15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="flex flex-col items-center mt-10"
+        className="flex flex-col items-center mt-14 sm:mt-10 text-center"
       >
         <motion.div
           initial={{ scale: 0.9 }}
@@ -126,24 +126,24 @@ export default function Home() {
           transition={{ duration: 1 }}
           className="relative text-center"
         >
-          <h1 className="text-[90px] font-[Playfair_Display] font-bold tracking-tight leading-none">
+          <h1 className="text-[60px] sm:text-[90px] font-[Playfair_Display] font-bold tracking-tight leading-none">
             <span className="text-[#E7D3C1]">M</span>
             <span className="text-[#AFA8A0]">C</span>
           </h1>
-          <p className="absolute inset-0 flex items-center justify-center text-[18px] tracking-[4px] font-[Poppins] text-[#7D7266]">
+          <p className="absolute inset-0 flex items-center justify-center text-[14px] sm:text-[18px] tracking-[3px] sm:tracking-[4px] font-[Poppins] text-[#7D7266]">
             MOON COSMETICS
           </p>
         </motion.div>
       </motion.header>
 
       {/* BUSCADOR */}
-      <div className="relative mt-10 w-80">
+      <div className="relative mt-10 w-full max-w-xs sm:max-w-md">
         <input
           type="text"
           placeholder="Buscar producto..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="w-full px-5 py-3 rounded-full border border-[#E6D9C8] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#D4BFAA] text-gray-700"
+          className="w-full px-5 py-3 rounded-full border border-[#E6D9C8] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#D4BFAA] text-gray-700 text-sm sm:text-base"
         />
         <FaSearch className="absolute top-3 right-5 text-[#C5A78E] text-xl" />
       </div>
@@ -153,17 +153,17 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2 }}
-        className="text-center mt-10 flex flex-wrap justify-center gap-4"
+        className="text-center mt-8 flex flex-wrap justify-center gap-3 sm:gap-4"
       >
         <a
           href="#skincare"
-          className="bg-gradient-to-r from-[#EDE0D4] to-[#D4BFAA] text-[#2F2F2F] px-8 py-3 rounded-full text-lg font-semibold shadow-md hover:shadow-lg transition-all"
+          className="bg-gradient-to-r from-[#EDE0D4] to-[#D4BFAA] text-[#2F2F2F] px-6 py-2 sm:px-8 sm:py-3 rounded-full text-sm sm:text-lg font-semibold shadow-md hover:shadow-lg transition-all"
         >
           Skincare
         </a>
         <a
           href="#maquillaje"
-          className="bg-gradient-to-r from-[#EDE0D4] to-[#D4BFAA] text-[#2F2F2F] px-8 py-3 rounded-full text-lg font-semibold shadow-md hover:shadow-lg transition-all"
+          className="bg-gradient-to-r from-[#EDE0D4] to-[#D4BFAA] text-[#2F2F2F] px-6 py-2 sm:px-8 sm:py-3 rounded-full text-sm sm:text-lg font-semibold shadow-md hover:shadow-lg transition-all"
         >
           Maquillaje
         </a>
@@ -171,32 +171,38 @@ export default function Home() {
 
       {/* SECCIONES */}
       {["skincare", "maquillaje"].map((cat) => (
-        <section key={cat} id={cat} className="mt-20 max-w-6xl px-6 w-full">
-          <h3 className="text-2xl font-semibold text-center mb-10 text-[#C5A78E] capitalize">
+        <section
+          key={cat}
+          id={cat}
+          className="mt-16 sm:mt-20 max-w-6xl px-2 sm:px-6 w-full"
+        >
+          <h3 className="text-xl sm:text-2xl font-semibold text-center mb-8 sm:mb-10 text-[#C5A78E] capitalize">
             {cat} {cat === "skincare" ? "✨" : "💄"}
           </h3>
-          <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide">
+          <div className="flex gap-4 sm:gap-6 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory scroll-smooth">
             {filteredProducts
               .filter((p) => p.categoria === cat)
               .map((producto) => (
                 <motion.div
                   key={producto.id}
                   whileHover={{ scale: 1.05 }}
-                  className="min-w-[250px] bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all"
+                  className="snap-center min-w-[200px] sm:min-w-[250px] bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all"
                 >
                   <img
                     src={producto.img}
                     alt={producto.nombre}
-                    className="w-full h-56 object-cover"
+                    className="w-full h-48 sm:h-56 object-cover"
                   />
                   <div className="p-4 text-center">
-                    <h4 className="font-medium text-[#2F2F2F]">
+                    <h4 className="font-medium text-[#2F2F2F] text-sm sm:text-base">
                       {producto.nombre}
                     </h4>
-                    <p className="text-[#7D7266] mt-1">S/{producto.precio}</p>
+                    <p className="text-[#7D7266] mt-1 text-sm sm:text-base">
+                      S/{producto.precio}
+                    </p>
                     <button
                       onClick={() => addToCart(producto)}
-                      className="mt-3 bg-gradient-to-r from-[#D4BFAA] to-[#C5A78E] text-white px-6 py-2 rounded-full shadow hover:scale-105 transition"
+                      className="mt-3 bg-gradient-to-r from-[#D4BFAA] to-[#C5A78E] text-white px-5 py-2 rounded-full shadow hover:scale-105 transition text-sm sm:text-base"
                     >
                       Agregar al carrito
                     </button>
@@ -205,7 +211,7 @@ export default function Home() {
               ))}
           </div>
           <div className="text-center mt-6">
-            <button className="text-[#C5A78E] font-medium underline hover:text-[#A18C75] transition">
+            <button className="text-[#C5A78E] font-medium underline hover:text-[#A18C75] transition text-sm sm:text-base">
               Ver más productos →
             </button>
           </div>
@@ -217,40 +223,41 @@ export default function Home() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="mt-16 flex flex-wrap justify-center gap-6"
+        className="mt-12 sm:mt-16 flex flex-wrap justify-center gap-4 sm:gap-6"
       >
-        <a
-          href="https://www.instagram.com/camiluna1612"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 bg-gradient-to-r from-[#EDE0D4] to-[#D4BFAA] text-[#2F2F2F] px-6 py-3 rounded-full text-lg font-semibold shadow-md hover:scale-105 transition-all"
-        >
-          <FaInstagram className="text-2xl" />
-          Instagram
-        </a>
-        <a
-          href="https://www.tiktok.com/@camiluna23"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 bg-gradient-to-r from-[#EDE0D4] to-[#D4BFAA] text-[#2F2F2F] px-6 py-3 rounded-full text-lg font-semibold shadow-md hover:scale-105 transition-all"
-        >
-          <FaTiktok className="text-2xl" />
-          TikTok
-        </a>
-        <a
-          href="https://wa.me/51992200823"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 bg-gradient-to-r from-[#EDE0D4] to-[#D4BFAA] text-[#2F2F2F] px-6 py-3 rounded-full text-lg font-semibold shadow-md hover:scale-105 transition-all"
-        >
-          <FaWhatsapp className="text-2xl" />
-          WhatsApp
-        </a>
+        {[
+          {
+            href: "https://www.instagram.com/camiluna1612",
+            icon: <FaInstagram className="text-xl sm:text-2xl" />,
+            label: "Instagram",
+          },
+          {
+            href: "https://www.tiktok.com/@camiluna23",
+            icon: <FaTiktok className="text-xl sm:text-2xl" />,
+            label: "TikTok",
+          },
+          {
+            href: "https://wa.me/51992200823",
+            icon: <FaWhatsapp className="text-xl sm:text-2xl" />,
+            label: "WhatsApp",
+          },
+        ].map(({ href, icon, label }) => (
+          <a
+            key={label}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 bg-gradient-to-r from-[#EDE0D4] to-[#D4BFAA] text-[#2F2F2F] px-5 py-2 sm:px-6 sm:py-3 rounded-full text-sm sm:text-lg font-semibold shadow-md hover:scale-105 transition-all"
+          >
+            {icon}
+            {label}
+          </a>
+        ))}
       </motion.div>
 
       {/* FOOTER */}
-      <footer className="mt-20 w-full bg-[#F5EDE3] py-8 text-center text-[#7D7266]">
-        <p className="text-sm">
+      <footer className="mt-14 sm:mt-20 w-full bg-[#F5EDE3] py-6 sm:py-8 text-center text-[#7D7266] text-xs sm:text-sm">
+        <p>
           © {new Date().getFullYear()} MoonCosmetics · Todos los derechos
           reservados.
         </p>

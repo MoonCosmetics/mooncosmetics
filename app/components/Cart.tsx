@@ -46,10 +46,10 @@ export default function Cart({ cart, setCart, onClose }: any) {
       initial={{ opacity: 0, x: 100 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 100 }}
-      className="fixed top-0 right-0 w-80 h-full bg-white shadow-2xl z-50 p-6 flex flex-col"
+      className="fixed top-0 right-0 w-full sm:w-80 h-full bg-white shadow-2xl z-50 p-4 sm:p-6 flex flex-col rounded-t-2xl sm:rounded-none"
     >
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold text-[#C5A78E]">
+        <h2 className="text-lg sm:text-xl font-semibold text-[#C5A78E]">
           Tu carrito 🛍️
         </h2>
         <button onClick={onClose}>
@@ -58,21 +58,24 @@ export default function Cart({ cart, setCart, onClose }: any) {
       </div>
 
       {cart.length === 0 ? (
-        <p className="text-gray-500 text-center mt-10">
+        <p className="text-gray-500 text-center mt-10 text-sm sm:text-base">
           Tu carrito está vacío 💄
         </p>
       ) : (
         <div className="flex-1 overflow-y-auto space-y-4">
           {cart.map((item: any) => (
-            <div key={item.id} className="flex items-center gap-3 border-b pb-3">
+            <div
+              key={item.id}
+              className="flex items-center gap-3 border-b pb-3"
+            >
               <img
                 src={item.img}
                 alt={item.nombre}
-                className="w-14 h-14 rounded-lg object-cover"
+                className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg object-cover"
               />
               <div className="flex-1">
-                <h4 className="text-sm font-medium">{item.nombre}</h4>
-                <p className="text-gray-600 text-sm">
+                <h4 className="text-xs sm:text-sm font-medium">{item.nombre}</h4>
+                <p className="text-gray-600 text-xs sm:text-sm">
                   S/{(item.precio * item.cantidad).toFixed(2)}
                 </p>
                 <div className="flex items-center gap-2 mt-1">
@@ -106,12 +109,12 @@ export default function Cart({ cart, setCart, onClose }: any) {
 
       {cart.length > 0 && (
         <div className="mt-4">
-          <p className="text-right font-semibold text-[#333] mb-2">
+          <p className="text-right font-semibold text-[#333] mb-2 text-sm sm:text-base">
             Total: S/{total.toFixed(2)}
           </p>
           <button
             onClick={handleCheckout}
-            className="w-full bg-gradient-to-r from-[#EDE0D4] to-[#D4BFAA] text-[#2F2F2F] py-3 rounded-full font-semibold shadow-md hover:scale-105 transition-all"
+            className="w-full bg-gradient-to-r from-[#EDE0D4] to-[#D4BFAA] text-[#2F2F2F] py-3 rounded-full font-semibold shadow-md hover:scale-105 transition-all text-sm sm:text-base"
           >
             Finalizar compra 💬
           </button>
@@ -120,6 +123,7 @@ export default function Cart({ cart, setCart, onClose }: any) {
     </motion.div>
   );
 }
+
 
 
 
