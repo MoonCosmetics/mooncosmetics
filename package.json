@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "deploy": "git add . && git commit -m \"🚀 Deploy automático\" && git push origin main"
   },
   "dependencies": {
     "framer-motion": "^12.23.24",
