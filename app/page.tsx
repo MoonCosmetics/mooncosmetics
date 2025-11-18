@@ -17,69 +17,21 @@ export default function Home() {
   const [cart, setCart] = useState<any[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [menuOpen, setMenuOpen] = useState(false); // Menú hamburguesa móvil
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    document.title = "MoonCosmetics | Maquillaje y Skincare Premium";
+    document.title = "Sweet Factory | Tortas Personalizadas";
   }, []);
 
   const productos = [
-    {
-      id: 1,
-      nombre: "Sérum Facial Glow",
-      precio: 79.9,
-      categoria: "skincare",
-      img: "https://plus.unsplash.com/premium_photo-1661769021743-7139c6fc4ab9?fm=jpg&q=80&w=800",
-    },
-    {
-      id: 2,
-      nombre: "Mascarilla Hidratante",
-      precio: 39.9,
-      categoria: "skincare",
-      img: "https://plus.unsplash.com/premium_photo-1674739375749-7efe56fc8bbb?fm=jpg&q=80&w=800",
-    },
-    {
-      id: 3,
-      nombre: "Tónico Refrescante",
-      precio: 45.9,
-      categoria: "skincare",
-      img: "https://plus.unsplash.com/premium_photo-1661726457110-c43a88d74567?fm=jpg&q=80&w=800",
-    },
-    {
-      id: 4,
-      nombre: "Crema Facial Nocturna",
-      precio: 89.9,
-      categoria: "skincare",
-      img: "https://images.unsplash.com/photo-1629198688000-71f23e745b6e?fm=jpg&q=80&w=800",
-    },
-    {
-      id: 5,
-      nombre: "Labial Mate Rosé",
-      precio: 49.9,
-      categoria: "maquillaje",
-      img: "https://plus.unsplash.com/premium_photo-1684407616442-8d5a1b7c978e?fm=jpg&q=80&w=800",
-    },
-    {
-      id: 6,
-      nombre: "Base Líquida Natural",
-      precio: 69.9,
-      categoria: "maquillaje",
-      img: "https://plus.unsplash.com/premium_photo-1677526496597-aa0f49053ce2?fm=jpg&q=80&w=800",
-    },
-    {
-      id: 7,
-      nombre: "Paleta de Sombras Pink Dream",
-      precio: 89.9,
-      categoria: "maquillaje",
-      img: "https://www.hiyamarianne.com/wp-content/uploads/2022/04/Product-still-life-photography-content-creation-for-Barry-M-Cosmetics.-Beauty-product-photography-styling-by-Marianne-Taylor._0009-1.jpg",
-    },
-    {
-      id: 8,
-      nombre: "Rubor Satinado Coral",
-      precio: 59.9,
-      categoria: "maquillaje",
-      img: "https://plus.unsplash.com/premium_photo-1684407616442-8d5a1b7c978e?fm=jpg&q=80&w=800",
-    },
+    { id: 1, nombre: "Torta 1", precio: 89.9, categoria: "tortas", img: "/torta1.jpg" },
+    { id: 2, nombre: "Torta 2", precio: 89.9, categoria: "tortas", img: "/torta2.jpg" },
+    { id: 3, nombre: "Torta 3", precio: 89.9, categoria: "tortas", img: "/torta3.jpg" },
+    { id: 4, nombre: "Torta 4", precio: 89.9, categoria: "tortas", img: "/torta4.jpg" },
+    { id: 5, nombre: "Torta 5", precio: 89.9, categoria: "tortas", img: "/torta5.jpg" },
+    { id: 6, nombre: "Torta 6", precio: 89.9, categoria: "tortas", img: "/torta6.jpg" },
+    { id: 7, nombre: "Torta 7", precio: 89.9, categoria: "tortas", img: "/torta7.jpg" },
+    { id: 8, nombre: "Torta 8", precio: 89.9, categoria: "tortas", img: "/torta8.jpg" },
   ];
 
   const filteredProducts = productos.filter((p) =>
@@ -103,6 +55,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#FFFDFB] to-[#F7EFEA] text-[#2F2F2F] font-[Poppins] flex flex-col items-center relative overflow-hidden px-4 sm:px-0">
+
       {/* BOTÓN DEL CARRITO */}
       <button
         onClick={() => setCartOpen(true)}
@@ -133,35 +86,28 @@ export default function Home() {
           className="fixed top-0 left-0 h-full w-3/4 bg-white shadow-2xl z-40 p-6 flex flex-col items-start gap-6 text-[#2F2F2F]"
         >
           <a
-            href="#skincare"
+            href="#tortas"
             onClick={() => setMenuOpen(false)}
             className="text-lg font-semibold text-[#C5A78E]"
           >
-            Skincare
+            Tortas
           </a>
           <a
-            href="#maquillaje"
-            onClick={() => setMenuOpen(false)}
-            className="text-lg font-semibold text-[#C5A78E]"
-          >
-            Maquillaje
-          </a>
-          <a
-            href="https://www.instagram.com/camiluna1612"
+            href="https://www.instagram.com/sweetfactory_aqp/"
             target="_blank"
             className="text-lg font-medium hover:text-[#A18C75]"
           >
             Instagram
           </a>
           <a
-            href="https://www.tiktok.com/@camiluna23"
+            href="https://www.tiktok.com/@sweetfactoryaqp"
             target="_blank"
             className="text-lg font-medium hover:text-[#A18C75]"
           >
             TikTok
           </a>
           <a
-            href="https://wa.me/51992200823"
+            href="https://wa.me/51913918132"
             target="_blank"
             className="text-lg font-medium hover:text-[#A18C75]"
           >
@@ -181,14 +127,16 @@ export default function Home() {
           initial={{ scale: 0.9 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1 }}
-          className="relative text-center"
+          className="relative flex flex-col items-center"
         >
-          <h1 className="text-[60px] sm:text-[90px] font-[Playfair_Display] font-bold tracking-tight leading-none">
-            <span className="text-[#E7D3C1]">M</span>
-            <span className="text-[#AFA8A0]">C</span>
-          </h1>
-          <p className="absolute inset-0 flex items-center justify-center text-[14px] sm:text-[18px] tracking-[3px] sm:tracking-[4px] font-[Poppins] text-[#7D7266]">
-            MOON COSMETICS
+          <img
+            src="/logo-sf.png"
+            alt="Sweet Factory Logo"
+            className="w-[140px] sm:w-[200px] object-contain"
+          />
+
+          <p className="mt-3 text-[16px] sm:text-[20px] tracking-[4px] font-[Playfair_Display] text-[#7D7266]">
+            SWEET FACTORY
           </p>
         </motion.div>
       </motion.header>
@@ -197,7 +145,7 @@ export default function Home() {
       <div className="relative mt-10 w-full max-w-xs sm:max-w-md">
         <input
           type="text"
-          placeholder="Buscar producto..."
+          placeholder="Buscar torta..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           className="w-full px-5 py-3 rounded-full border border-[#E6D9C8] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#D4BFAA] text-gray-700 text-sm sm:text-base"
@@ -213,67 +161,52 @@ export default function Home() {
         className="text-center mt-8 flex flex-wrap justify-center gap-3 sm:gap-4"
       >
         <a
-          href="#skincare"
+          href="#tortas"
           className="bg-gradient-to-r from-[#EDE0D4] to-[#D4BFAA] text-[#2F2F2F] px-6 py-2 sm:px-8 sm:py-3 rounded-full text-sm sm:text-lg font-semibold shadow-md hover:shadow-lg transition-all"
         >
-          Skincare
-        </a>
-        <a
-          href="#maquillaje"
-          className="bg-gradient-to-r from-[#EDE0D4] to-[#D4BFAA] text-[#2F2F2F] px-6 py-2 sm:px-8 sm:py-3 rounded-full text-sm sm:text-lg font-semibold shadow-md hover:shadow-lg transition-all"
-        >
-          Maquillaje
+          Tortas
         </a>
       </motion.div>
 
-      {/* SECCIONES */}
-      {["skincare", "maquillaje"].map((cat) => (
-        <section
-          key={cat}
-          id={cat}
-          className="mt-16 sm:mt-20 max-w-6xl px-2 sm:px-6 w-full"
-        >
-          <h3 className="text-xl sm:text-2xl font-semibold text-center mb-8 sm:mb-10 text-[#C5A78E] capitalize">
-            {cat} {cat === "skincare" ? "✨" : "💄"}
-          </h3>
-          <div className="flex gap-4 sm:gap-6 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory scroll-smooth">
-            {filteredProducts
-              .filter((p) => p.categoria === cat)
-              .map((producto) => (
-                <motion.div
-                  key={producto.id}
-                  whileHover={{ scale: 1.05 }}
-                  className="snap-center min-w-[200px] sm:min-w-[250px] bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all"
+      {/* SECCIÓN DE TORTAS */}
+      <section
+        id="tortas"
+        className="mt-16 sm:mt-20 max-w-6xl px-2 sm:px-6 w-full"
+      >
+        <h3 className="text-xl sm:text-2xl font-semibold text-center mb-8 sm:mb-10 text-[#C5A78E]">
+          Tortas 🎂
+        </h3>
+
+        <div className="flex gap-4 sm:gap-6 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory scroll-smooth">
+          {filteredProducts.map((producto) => (
+            <motion.div
+              key={producto.id}
+              whileHover={{ scale: 1.05 }}
+              className="snap-center min-w-[200px] sm:min-w-[250px] bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all"
+            >
+              <img
+                src={producto.img}
+                alt={producto.nombre}
+                className="w-full h-48 sm:h-56 object-cover"
+              />
+              <div className="p-4 text-center">
+                <h4 className="font-medium text-[#2F2F2F] text-sm sm:text-base">
+                  {producto.nombre}
+                </h4>
+                <p className="text-[#7D7266] mt-1 text-sm sm:text-base">
+                  S/{producto.precio}
+                </p>
+                <button
+                  onClick={() => addToCart(producto)}
+                  className="mt-3 bg-gradient-to-r from-[#D4BFAA] to-[#C5A78E] text-white px-5 py-2 rounded-full shadow hover:scale-105 transition text-sm sm:text-base"
                 >
-                  <img
-                    src={producto.img}
-                    alt={producto.nombre}
-                    className="w-full h-48 sm:h-56 object-cover"
-                  />
-                  <div className="p-4 text-center">
-                    <h4 className="font-medium text-[#2F2F2F] text-sm sm:text-base">
-                      {producto.nombre}
-                    </h4>
-                    <p className="text-[#7D7266] mt-1 text-sm sm:text-base">
-                      S/{producto.precio}
-                    </p>
-                    <button
-                      onClick={() => addToCart(producto)}
-                      className="mt-3 bg-gradient-to-r from-[#D4BFAA] to-[#C5A78E] text-white px-5 py-2 rounded-full shadow hover:scale-105 transition text-sm sm:text-base"
-                    >
-                      Agregar al carrito
-                    </button>
-                  </div>
-                </motion.div>
-              ))}
-          </div>
-          <div className="text-center mt-6">
-            <button className="text-[#C5A78E] font-medium underline hover:text-[#A18C75] transition text-sm sm:text-base">
-              Ver más productos →
-            </button>
-          </div>
-        </section>
-      ))}
+                  Agregar al carrito
+                </button>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
 
       {/* REDES SOCIALES */}
       <motion.div
@@ -284,17 +217,17 @@ export default function Home() {
       >
         {[
           {
-            href: "https://www.instagram.com/camiluna1612",
+            href: "https://www.instagram.com/sweetfactory_aqp/",
             icon: <FaInstagram className="text-xl sm:text-2xl" />,
             label: "Instagram",
           },
           {
-            href: "https://www.tiktok.com/@camiluna23",
+            href: "https://www.tiktok.com/@sweetfactoryaqp",
             icon: <FaTiktok className="text-xl sm:text-2xl" />,
             label: "TikTok",
           },
           {
-            href: "https://wa.me/51992200823",
+            href: "https://wa.me/51913918132",
             icon: <FaWhatsapp className="text-xl sm:text-2xl" />,
             label: "WhatsApp",
           },
@@ -315,8 +248,7 @@ export default function Home() {
       {/* FOOTER */}
       <footer className="mt-14 sm:mt-20 w-full bg-[#F5EDE3] py-6 sm:py-8 text-center text-[#7D7266] text-xs sm:text-sm">
         <p>
-          © {new Date().getFullYear()} MoonCosmetics · Todos los derechos
-          reservados.
+          © {new Date().getFullYear()} Sweet Factory · Todos los derechos reservados.
         </p>
       </footer>
 
@@ -326,6 +258,3 @@ export default function Home() {
     </main>
   );
 }
-
-
-

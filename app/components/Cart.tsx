@@ -37,7 +37,7 @@ export default function Cart({ cart, setCart, onClose }: any) {
       2
     )}\n\n¿Podrían ayudarme a confirmar mi pedido? 💕`;
 
-    const url = `https://wa.me/51992200823?text=${encodeURIComponent(message)}`;
+    const url = `https://wa.me/51913918132?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
   };
 
